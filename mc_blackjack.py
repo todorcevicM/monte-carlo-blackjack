@@ -12,7 +12,7 @@ hit_play = np.full((10, 18), 1)
 check_win = np.full((10, 18), 1)
 check_play = np.full((10, 18), 1)
 
-def simulate(iterations = 10000):
+def simulate(iterations = 1000000):
 
     for _ in range(iterations):
         play = True
@@ -63,6 +63,10 @@ def simulate(iterations = 10000):
 
     df = pd.DataFrame((check_win / check_play).round(2), range(2, 12), range(4, 22))
     sns.heatmap(df)
+    plt.show()
+    df1 = df.ge(0.5).astype(int)
+    print(df1)
+    sns.heatmap(df1)
     plt.show()
 
 
