@@ -33,6 +33,14 @@ class Table(object):
             self.hand_sum += self.card_values[i.value]
         for i in self.dealer_visible:
             self.dealer_sum += self.card_values[i.value]
+        
+        if self.hand_sum > 21:
+            for i in self.hand:
+                if i.value == 'Ace':
+                    i.value = 'Ace_used'
+                    self.hand_sum -= 10
+                    break
+        
 
     def __str__(self):
         ret = "####### Dealer #######\n"

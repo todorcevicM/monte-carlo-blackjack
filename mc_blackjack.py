@@ -1,15 +1,18 @@
 import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 import Table
 
 if np.get_printoptions()['linewidth']: 
     np.set_printoptions(linewidth=160)
 
-hit_win = np.full((10, 19), 1)
-hit_play = np.full((10, 19), 1)
-check_win = np.full((10, 19), 1)
-check_play = np.full((10, 19), 1)
+hit_win = np.full((10, 18), 1)
+hit_play = np.full((10, 18), 1)
+check_win = np.full((10, 18), 1)
+check_play = np.full((10, 18), 1)
 
-def simulate(iterations = 10000):
+def simulate(iterations = 100000):
 
     for _ in range(iterations):
         play = True
@@ -39,17 +42,28 @@ def simulate(iterations = 10000):
         else:
             check_play[x, y] += 1
 
+    print("Hit_Win matrix:")
     print(hit_win)
     print("\n")
+    print("Hit_Play matrix:")
     print(hit_play)
     print("\n")
+    print("Check_Win matrix:")
     print(check_win)
     print("\n")
+    print("Check_Play matrix:")
     print(check_play)
     print("\n")
-    print((hit_win/hit_play - check_win/check_play).round(2))
+
+
+    print((hit_win / hit_play - check_win / check_play).round(2))
     print("\n")
-    print((check_win/check_play).round(2))
+    print("Win percentage when checking: ")
+    print((check_win / check_play).round(2))
+
+    df = pd.DataFrame((check_win / check_play).round(2), range(2, 12), range(4, 22))
+    sns.heatmap(df)
+    plt.show()
 
 
 simulate()
