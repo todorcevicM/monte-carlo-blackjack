@@ -12,7 +12,7 @@ hit_play = np.full((10, 18), 1)
 check_win = np.full((10, 18), 1)
 check_play = np.full((10, 18), 1)
 
-def simulate(iterations = 10000000):
+def simulate(iterations = 100000):
 
     for _ in range(iterations):
         play = True
